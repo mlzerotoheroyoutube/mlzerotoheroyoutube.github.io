@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ML Zero to Hero</title>
+<meta name="description" content="Free machine learning and AI explainers on YouTube, runnable code for every video, and open-source fixes to the tools we teach.">
+<meta property="og:title" content="ML Zero to Hero">
+<meta property="og:description" content="Free ML and AI explainers, code for every video, and open-source work.">
+<meta property="og:url" content="https://mlzerotohero.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect x='2' y='24' width='7' height='14' rx='2' fill='%23ccc'/%3E%3Crect x='11' y='18' width='7' height='20' rx='2' fill='%23999'/%3E%3Crect x='20' y='12' width='7' height='26' rx='2' fill='%23666'/%3E%3Crect x='29' y='4' width='7' height='34' rx='2' fill='%23111'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#fff;--fg:#0a0a0a;--muted:#666;--line:#e6e6e6;--card:#fafafa;--s1:#d4d4d4;--s2:#a3a3a3;--s3:#737373;--s4:#404040;--s5:#0a0a0a}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0b0b;--fg:#f5f5f5;--muted:#9a9a9a;--line:#232323;--card:#121212;--s1:#2e2e2e;--s2:#505050;--s3:#7a7a7a;--s4:#b0b0b0;--s5:#f5f5f5}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.steps{display:flex;height:6px}.steps i{flex:1}
+.steps i:nth-child(1){background:var(--s1)}.steps i:nth-child(2){background:var(--s2)}.steps i:nth-child(3){background:var(--s3)}.steps i:nth-child(4){background:var(--s4)}.steps i:nth-child(5){background:var(--s5)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+nav b{letter-spacing:.06em;font-size:14px}
+nav a{text-decoration:none;color:var(--muted);font-size:14px;margin-left:20px}nav a:hover{color:var(--fg)}
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;padding:72px 0 88px}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-.03em;font-weight:800}
+.lede{color:var(--muted);font-size:19px;max-width:520px;margin-top:22px}
+.bars{display:flex;gap:10px;align-items:flex-end;height:220px}
+.bars div{flex:1;border-radius:10px;position:relative}
+.bars span{position:absolute;top:-24px;left:0;right:0;text-align:center;font-size:12px;font-weight:600;white-space:nowrap}
+section{padding:72px 0;border-top:1px solid var(--line)}
+h2{font-size:32px;letter-spacing:-.02em;margin-bottom:10px}
+.sub{color:var(--muted);max-width:620px;margin-bottom:36px}
+.channels{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column}
+.card h3{font-size:22px;letter-spacing:-.01em}
+.card .handle{color:var(--muted);font-size:14px;margin:2px 0 14px}
+.card p{color:var(--muted);flex:1}
+.btn{display:inline-block;margin-top:22px;padding:11px 18px;border-radius:999px;background:var(--fg);color:var(--bg);text-decoration:none;font-weight:600;font-size:14px;align-self:flex-start}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.nest{display:flex;justify-content:center;margin:6px 0 18px}
+.nest div{border:1.5px solid var(--s3);border-radius:14px;padding:22px 10px 10px;position:relative;text-align:center}
+.nest div::before{content:attr(data-l);position:absolute;top:4px;left:0;right:0;font-size:11px;font-weight:600;color:var(--muted)}
+.nest .ai{border-color:var(--s2)}.nest .llm{padding:22px 18px 12px;background:var(--fg);border-color:var(--fg)}.nest .llm::before{color:var(--bg)}
+.videos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.video{text-decoration:none}
+.video img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1px solid var(--line);display:block;background:var(--card)}
+.video b{display:block;margin-top:10px;font-size:15px}
+.video small{color:var(--muted);font-size:13px}
+.repos{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.repo{border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;transition:border-color .15s}
+.repo:hover{border-color:var(--s3)}
+.repo b{font-size:15px}.repo small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.stats{display:flex;gap:40px;margin-bottom:32px;flex-wrap:wrap}
+.stats div b{font-size:40px;letter-spacing:-.03em;display:block;line-height:1}
+.stats div small{color:var(--muted);font-size:14px}
+.prs{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.pr{display:grid;grid-template-columns:150px 1fr 90px;gap:16px;padding:14px 20px;border-top:1px solid var(--line);text-decoration:none;align-items:center}
+.pr:first-child{border-top:0}.pr:hover{background:var(--card)}
+.pr .r{font-size:13px;color:var(--muted)}
+.pr .t{font-size:15px}
+.tag{font-size:12px;font-weight:600;text-align:center;border-radius:999px;padding:3px 0;border:1px solid var(--line)}
+.tag.m{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{margin-left:18px;text-decoration:none}footer a:hover{color:var(--fg)}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding:40px 0 56px}.bars{height:150px}.channels,.videos{grid-template-columns:1fr}.pr{grid-template-columns:1fr 80px}.pr .r{grid-column:1/-1}nav a{margin-left:14px}nav .hide{display:none}}
+</style>
+</head>
+<body>
+<div class="steps"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+<nav><b>ML ZERO TO HERO</b><div><a href="#channels">Channels</a><a href="#code" class="hide">Code</a><a href="#open-source">Open source</a></div></nav>
+
+<header class="hero">
+  <div>
+    <div class="kicker">Free, every 12 hours</div>
+    <h1>Machine learning and AI, zero to hero.</h1>
+    <p class="lede">Short explainers that start from the idea and build up to the math and the code. Two YouTube channels, runnable notebooks for every video, and fixes sent back to the open-source tools we teach with.</p>
+  </div>
+  <div class="bars" aria-hidden="true">
+    <div style="height:30%;background:var(--s1)"><span>Math</span></div>
+    <div style="height:46%;background:var(--s2)"><span>Core ML</span></div>
+    <div style="height:62%;background:var(--s3)"><span>Deep learning</span></div>
+    <div style="height:80%;background:var(--s4)"><span>Modern AI</span></div>
+    <div style="height:100%;background:var(--s5)"><span>Hero</span></div>
+  </div>
+</header>
+
+<section id="channels">
+  <h2>Two channels</h2>
+  <p class="sub">One goes deep on machine learning. The other zooms out to all of AI, including the parts that never learn from data at all.</p>
+  <div class="channels">
+    <div class="card">
+      <h3>ML Zero to Hero</h3>
+      <div class="handle">@MLZeroToHeroUSA</div>
+      <p>We start with the math you actually need: vectors, derivatives, probability. Then classic models, neural networks, transformers and LLMs. Each video is one idea, explained slowly, with a picture you can keep in your head.</p>
+      <a class="btn" href="https://www.youtube.com/@MLZeroToHeroUSA?sub_confirmation=1" target="_blank" rel="noopener">Watch on YouTube</a>
+    </div>
+    <div class="card">
+      <h3>AI Zero to Hero</h3>
+      <div class="handle">@AIZeroToHeroUSA</div>
+      <div class="nest" aria-label="AI contains machine learning, which contains deep learning, which contains LLMs">
+        <div class="ai" data-l="AI"><div data-l="Machine learning"><div data-l="Deep learning"><div class="llm" data-l="LLMs"></div></div></div></div>
+      </div>
+      <p>The route your maps app picks and a chess engine looking ten moves ahead are both AI, and neither one is trained. This channel covers search, logic, planning and probability, then the systems people build around LLMs today. First episodes go live November 16.</p>
+      <a class="btn" href="https://www.youtube.com/@AIZeroToHeroUSA?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a>
+    </div>
+  </div>
+</section>
+
+<section id="start">
+  <h2>Good places to start</h2>
+  <p class="sub">If you're new, begin with gradient descent. Almost everything else in the series leans on it.</p>
+  <div class="videos">
+    <a class="video" href="https://youtu.be/hWQau4xncRo" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/hWQau4xncRo/hqdefault.jpg" alt=""><b>Gradient descent</b><small>How a model learns, one small step at a time</small></a>
+    <a class="video" href="https://youtu.be/esFUXmIsJTo" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/esFUXmIsJTo/hqdefault.jpg" alt=""><b>Linear regression</b><small>The first model everyone should build</small></a>
+    <a class="video" href="https://youtu.be/ZRmTV1eZn30" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/ZRmTV1eZn30/hqdefault.jpg" alt=""><b>Logistic regression</b><small>Turning a line into a yes or no</small></a>
+    <a class="video" href="https://youtu.be/qzXPRsMTaho" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/qzXPRsMTaho/hqdefault.jpg" alt=""><b>Eigenvalues and eigenvectors</b><small>The directions a matrix leaves alone</small></a>
+    <a class="video" href="https://youtu.be/ppMfuSVqWIY" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/ppMfuSVqWIY/hqdefault.jpg" alt=""><b>Singular value decomposition</b><small>Any matrix, split into three simple moves</small></a>
+    <a class="video" href="https://youtu.be/r6M_hBYjvA0" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/r6M_hBYjvA0/hqdefault.jpg" alt=""><b>Derivatives</b><small>Slope, change, and why training needs both</small></a>
+  </div>
+</section>
+
+<section id="code">
+  <h2>Code for every video</h2>
+  <p class="sub">Every explainer has a notebook and notes you can run yourself. Pick a stage.</p>
+  <div class="repos">
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/math-foundations" target="_blank" rel="noopener"><b>Math foundations</b><small>Linear algebra, calculus, probability</small></a>
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/ml-foundations" target="_blank" rel="noopener"><b>ML foundations</b><small>Loss, bias and variance, evaluation</small></a>
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/classical-supervised-learning" target="_blank" rel="noopener"><b>Classical supervised learning</b><small>Trees, SVMs, ensembles</small></a>
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/deep-learning-foundations" target="_blank" rel="noopener"><b>Deep learning foundations</b><small>Backprop, optimizers, training</small></a>
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/computer-vision" target="_blank" rel="noopener"><b>Computer vision</b><small>CNNs, ViT, detection</small></a>
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/transformers" target="_blank" rel="noopener"><b>Transformers</b><small>Attention from the ground up</small></a>
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/large-language-models" target="_blank" rel="noopener"><b>Large language models</b><small>Pretraining, tuning, inference</small></a>
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/generative-models" target="_blank" rel="noopener"><b>Generative models</b><small>VAEs, GANs, diffusion</small></a>
+    <a class="repo" href="https://github.com/mlzerotoheroyoutube/ai-zero-to-hero" target="_blank" rel="noopener"><b>AI Zero to Hero</b><small>Search, logic, planning and more</small></a>
+  </div>
+</section>
+
+<section id="open-source">
+  <h2>Giving back to open source</h2>
+  <p class="sub">We teach with these libraries, so when we hit a bug or a broken doc, we send the fix upstream. Small patches mostly, but they add up.</p>
+  <div class="stats">
+    <div><b>8</b><small>pull requests merged</small></div>
+    <div><b>3</b><small>projects contributed to</small></div>
+    <div><b>2</b><small>more in review</small></div>
+  </div>
+  <div class="prs">
+    <a class="pr" href="https://github.com/huggingface/diffusers/pull/15174" target="_blank" rel="noopener"><span class="r">huggingface/diffusers</span><span class="t">Fixed 22 dead external links in the docs</span><span class="tag m">Merged</span></a>
+    <a class="pr" href="https://github.com/RunanywhereAI/runanywhere-sdks/pull/1264" target="_blank" rel="noopener"><span class="r">RunAnywhere SDKs</span><span class="t">Decode the directory-probe path as UTF-8 on Windows</span><span class="tag m">Merged</span></a>
+    <a class="pr" href="https://github.com/RunanywhereAI/runanywhere-sdks/pull/1256" target="_blank" rel="noopener"><span class="r">RunAnywhere SDKs</span><span class="t">Stop reporting an unreadable Android model folder as missing</span><span class="tag m">Merged</span></a>
+    <a class="pr" href="https://github.com/RunanywhereAI/runanywhere-sdks/pull/1261" target="_blank" rel="noopener"><span class="r">RunAnywhere SDKs</span><span class="t">Expose the null-directory classifier as a public API</span><span class="tag m">Merged</span></a>
+    <a class="pr" href="https://github.com/RunanywhereAI/runanywhere-sdks/pull/1265" target="_blank" rel="noopener"><span class="r">RunAnywhere SDKs</span><span class="t">Relabel stale reserved-slot comments in plugin entries</span><span class="tag m">Merged</span></a>
+    <a class="pr" href="https://github.com/RunanywhereAI/runanywhere-sdks/pull/1260" target="_blank" rel="noopener"><span class="r">RunAnywhere SDKs</span><span class="t">Update v14 slot counts in the engine header</span><span class="tag m">Merged</span></a>
+    <a class="pr" href="https://github.com/RunanywhereAI/runanywhere-sdks/pull/1238" target="_blank" rel="noopener"><span class="r">RunAnywhere SDKs</span><span class="t">Point the remaining plugin ABI references at v14</span><span class="tag m">Merged</span></a>
+    <a class="pr" href="https://github.com/RunanywhereAI/runanywhere-sdks/pull/1226" target="_blank" rel="noopener"><span class="r">RunAnywhere SDKs</span><span class="t">Record capability bit 40 in the ABI history</span><span class="tag m">Merged</span></a>
+    <a class="pr" href="https://github.com/BerriAI/litellm/pull/50193" target="_blank" rel="noopener"><span class="r">BerriAI/litellm</span><span class="t">Look up the A2A agent card at the origin for sub-path endpoints</span><span class="tag">In review</span></a>
+    <a class="pr" href="https://github.com/Arize-ai/phoenix/pull/17661" target="_blank" rel="noopener"><span class="r">Arize-ai/phoenix</span><span class="t">Clear old scores when every row fails on re-evaluation</span><span class="tag">In review</span></a>
+  </div>
+  <a class="btn ghost" href="https://github.com/mlzerotoheroyoutube" target="_blank" rel="noopener">See everything on GitHub</a>
+</section>
+
+<footer>
+  <span>ML Zero to Hero · Free forever</span>
+  <span><a href="https://www.youtube.com/@MLZeroToHeroUSA" target="_blank" rel="noopener">ML channel</a><a href="https://www.youtube.com/@AIZeroToHeroUSA" target="_blank" rel="noopener">AI channel</a><a href="https://github.com/mlzerotoheroyoutube" target="_blank" rel="noopener">GitHub</a></span>
+</footer>
+</div>
+</body>
+</html>
